@@ -1,3 +1,4 @@
 DEBUG=False
 SECRET_KEY=definasuachavesecreta
 INTERNAL_IPS=127.0.0.1
+SENTRY_DSN=
