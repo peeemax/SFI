@@ -86,7 +86,7 @@ class User(AbstractUser, PermissionsMixin):
         # The user is identified by their email address
         return self.first_name
 
-    def has_perm(self, subject, message, from_email=None, **kwargs):
+    def email_user(self, subject, message, from_email=None, **kwargs):
         """
         Send an email to this user.
         """

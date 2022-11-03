@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import csv
 from pathlib import Path
 import os
+from xml.etree.ElementInclude import default_loader
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from decouple import config
@@ -74,6 +76,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SFI.wsgi.application'
+
+# Configuração Django Debug Toolbar
+
+INTERNAL_IPS=config('INTERNAL_IPS', default='127.0.0.1')
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
 # Database
