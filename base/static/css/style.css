@@ -1,1 +1,10 @@
-# Empty CSS file for your own CSS
+body {
+    margin: 0;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    background-color: url('../img/igreja.jpg');
+    background-size: cover;
+}
