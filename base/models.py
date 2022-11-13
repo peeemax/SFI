@@ -92,6 +92,7 @@ class User(AbstractUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+
 class Morador(models.Model):
     
     DOCS = (
@@ -129,10 +130,92 @@ class Morador(models.Model):
     
     nome_completo = models.CharField('Nome Completo', max_length=60)
     documento = models.CharField('Tipo de documento', max_length=10, choices=DOCS)
-    n_documento = models.CharField('Número do documento', max_length=60)
+    n_documento = models.IntegerField('Número do documento', max_length=11)
     data_nascimento = models.DateTimeField('Data de nascimento')
     trabalhando = models.CharField('Sim ou Não', max_length=20, choices=TRABALHA)
     estudando = models.CharField('Tipo de documento', max_length=10, choices=ESTUDA)
-    sexo = models.CharField('Tipo de documento', max_length=10, choices=SEXOS)
+    sexo = models.CharField('Sexo', max_length=10, choices=SEXOS)
     grau_parentesco = models.CharField('Tipo de documento', max_length=10, choices=PARENTESCO)
+
+
+class Anfitrião(models.Model):
+    
+    SEXOS = (
+        ('M', 'Masculino'),
+        ('F', 'Feminino'),
+    )
+    
+    ESTADO_CIVIL = (
+        ('S', 'Solteiro/a'),
+        ('C', 'Casado/a'),
+        ('V', 'Viúvo/a'),
+        ('S', 'Separado/a'),
+        ('O', 'Outros'),
+    )
+    
+    ESCOLARIDADE = (
+        ('F', 'Fundamental'),
+        ('M', 'Médio'),
+        ('SI', 'Superior Inc.'),
+        ('SC', 'Superior Completo'),
+        ('S', 'Sem escolaridade'),
+    )
+    
+    RESIDENCIA = (
+        ('P', 'Própria'),
+        ('A', 'Alugada'),
+        ('M', 'Moro com Parentes'),
+        ('O', 'Outro'),
+    )
+    
+    SITUACAO_ATUAL = (
+        ('T', 'Trabalhando'),
+        ('D', 'Desempregado'),
+        ('Af', 'Afastado'),
+        ('Ap', 'Aposentado'),
+        ('P', 'Pensionista'),
+        ('O', 'Outros'),
+    )
+    
+    RELIGIAO = (
+        ('C', 'Católico'),
+        ('E', 'Evangélico'),
+        ('O', 'Outra'),
+    )
+    
+    PRATICANTE = (
+        ('S', 'Sim'),
+        ('N', 'Não'),
+        ('A', 'As vezes'),
+    )
+    
+    FILHOS = (
+        ('S', 'Sim'),
+        ('N', 'Não'),
+    )
+    
+    nome_completo = models.CharField('Nome Completo', max_length=60)
+    data_nascimento = models.DateField('Data de nascimento')
+    rg = models.DecimalField('Número do RG', max_digits=7, decimal_places=0, null=True)
+    cpf = models.DecimalField('Número do CPF', max_digits=11, decimal_places=0, null=True)
+    data_casamento = models.DateField('Data de casamento', null=True)
+    sexo = models.CharField('Sexo', max_length=1, choices=SEXOS, default='M')
+    nome_pai = models.CharField('Nome do Pai', max_length=60)
+    nome_mãe = models.CharField('Nome da Mãe', max_length=60)
+    naturalidade = models.CharField('Cidade de origem', max_length=60)
+    estado_civil = models.CharField('Estado civil', max_length=17, choices=ESTADO_CIVIL, default='C')
+    escolaridade = models.CharField('Escolaridade', max_length=17, choices=ESCOLARIDADE, default='F')
+    telefone = models.IntegerField('Celular ou Telefone', null=True)
+    profissao = models.CharField('Profissão', max_length=60)
+    n_carteira_trabalho = models.IntegerField('Nº Careteira de Trabalho', null=True)
+    situacao_atual = models.CharField('Situação atual', max_length=17, choices=SITUACAO_ATUAL, default='T')
+    religiao = models.CharField('Religião', max_length=17, choices=RELIGIAO, default='C')
+    praticante = models.CharField('Praticante', max_length=17, choices=PRATICANTE, default='S')
+    filhos = models.CharField('Possui filhos', max_length=17, choices=FILHOS, default='S')
+    n_filhos = models.CharField('Se possuir filhos, informar o Nº', max_length=17, null=True)
+    filhos_residencia = models.CharField('Se possuir filhos, informar quantos moram junto', max_length=17, null=True)
+    filhos_menor_quartorze_anos = models.CharField('Se possuir filhos, informar se possui filhos menores de 14 anos', max_length=17, null=True)
+              
+    
+    tipo_residencia = models.CharField('Tipo de Residência', max_length=17, choices=RESIDENCIA)
     
