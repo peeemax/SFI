@@ -136,7 +136,11 @@ class Morador(models.Model):
     estudando = models.CharField('Tipo de documento', max_length=10, choices=ESTUDA)
     sexo = models.CharField('Sexo', max_length=10, choices=SEXOS)
     grau_parentesco = models.CharField('Tipo de documento', max_length=10, choices=PARENTESCO)
-
+    
+    def __str__(self):
+        return str(self.id)
+    
+    
 
 class Anfitrião(models.Model):
     
@@ -194,6 +198,22 @@ class Anfitrião(models.Model):
         ('N', 'Não'),
     )
     
+    ALGUEM = (
+        ('D', 'Doente'),
+        ('DF', 'Def. Físico'),
+        ('N', 'Não'),
+    )
+    
+    SAUDE = (
+        ('S', 'Sim'),
+        ('N', 'Não'),
+    )
+    
+    AUXILIO = (
+        ('S', 'Sim'),
+        ('N', 'Não'),
+    )
+    
     nome_completo = models.CharField('Nome Completo', max_length=60)
     data_nascimento = models.DateField('Data de nascimento')
     rg = models.DecimalField('Número do RG', max_digits=7, decimal_places=0, null=True)
@@ -215,7 +235,24 @@ class Anfitrião(models.Model):
     n_filhos = models.CharField('Se possuir filhos, informar o Nº', max_length=17, null=True)
     filhos_residencia = models.CharField('Se possuir filhos, informar quantos moram junto', max_length=17, null=True)
     filhos_menor_quartorze_anos = models.CharField('Se possuir filhos, informar se possui filhos menores de 14 anos', max_length=17, null=True)
-              
+    alguem_impossibilitado = models.CharField('Na família tem alguém:', max_length=17, choices=ALGUEM, default='D')         
+    tipo_doenca = models.CharField('Se tiver alguém doente, informar o tipo de doença', max_length=17, null=True)
+    tipo_deficiencia = models.CharField('Se tiver alguém deficiente, informar o tipo da deficiência', max_length=17, null=True)    
+    alguem_posto_saude = models.CharField('Alguém frequenta posto de saúde?', max_length=17, choices=SAUDE, default='S')
+    posto_bairro = models.CharField('Se alguém frequentar o posto, informar o posto e o bairro', max_length=17, null=True)
+    alguem_beneficio_auxilio = models.CharField('Alguém recebe algum benefício/auxílio do governo?', max_length=17, choices=AUXILIO, default='S')
+    beneficio_auxilio = models.CharField('Se alguém receber algum auxilio/beneficio do governo, informar-lo', max_length=17, null=True)
+    tipo_residencia = models.CharField('Tipo de Residência', max_length=17, choices=RESIDENCIA, default='A')
+    endereco = models.CharField('Av/Rua do endereço', max_length=100, null=True)
+    n_endereco = models.CharField('Nº do endereço', max_length=30, null=True)
+    comp_endereco = models.CharField('Se tiver complemento do endereço', max_length=50, null=True)
+    bairro = models.CharField('Bairro', max_length=70, null=True)
+    cidade = models.CharField('Cidade', max_length=70, null=True)
+    estado = models.CharField('Estado', max_length=70, null=True)
     
-    tipo_residencia = models.CharField('Tipo de Residência', max_length=17, choices=RESIDENCIA)
     
+    def __str__(self):
+        return str(self.id)
+    
+    class Meta:
+        db_table = 'Família'
