@@ -6,5 +6,5 @@ app_name = 'base'
 urlpatterns = [
     path('', home, name='home'),
     path('cadastro_família/', cadastrar_familia_anfitriao, name='cadastro_família'),
-    path('cadastro_membro/', cadastrar_membro, name='cadastro_membro')
+    path('cadastro_membro/', cadastrar_membro, name='cadastro_membro'),
 ]
