@@ -1,11 +1,20 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Anfitrião
 
 from base.forms import FamiliaForm, MoradorForm
 
-def home(request):
-    return render(request, 'base/home.html')
+class ListaResumoAnfitriaoView(ListView):
+    model = Anfitrião
+    queryset = Anfitrião.objects.all().order_by('nome_completo')
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+        return queryset
+    
 
 def cadastrar_familia_anfitriao(request):
     if request.method == "GET":

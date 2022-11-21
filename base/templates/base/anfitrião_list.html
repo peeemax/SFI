@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		  <div class="col-md-12">
+			  
+			  <table class="table table-striped table-sm">
+				  <thead>
+					  <tr>
+						  <th>
+							  Família
+						  </th>
+						  <th>
+							  Qtd Pessoas Família
+						  </th>
+						  <th>
+							  Qtd Cestas
+						  </th>
+					  </tr>
+				  </thead>
+				  <tbody>
+						{% for anfitriao in object_list %}
+						<tr>
+						  <td>
+							{{ anfitriao.nome_completo }}
+						  </td>
+						  <td>
+
+						  </td>
+						  <td>
+							
+						  </td>
+					  </tr>
+					  </tr>
+					  {% endfor %}
+				  </tbody>
+			  </table>
+		  </div>
+	  </div>
+	</div>
+</div>
+{% endblock body %}

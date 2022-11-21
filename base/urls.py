@@ -1,10 +1,10 @@
 from django.urls import path
 
-from base.views import home, cadastrar_familia_anfitriao, cadastrar_membro
+from base.views import cadastrar_familia_anfitriao, cadastrar_membro, ListaResumoAnfitriaoView
 
 app_name = 'base'
 urlpatterns = [
-    path('', home, name='home'),
+    path('', ListaResumoAnfitriaoView.as_view(), name='anfitrião.list'),
     path('cadastro_família/', cadastrar_familia_anfitriao, name='cadastro_família'),
     path('cadastro_membro/', cadastrar_membro, name='cadastro_membro'),
 ]

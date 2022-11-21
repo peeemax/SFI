@@ -193,3 +193,15 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(Anfitrião)
 admin.site.register(Morador)
+
+class AnfitriaoAdmin(admin.ModelAdmin):
+    list_display = [
+        'nome_completo',
+        'data_nascimento',
+    ]
+    list_filter = [
+        'data_nascimento'
+    ]
+    search_fields = [
+        'nome_completo',
+    ]
