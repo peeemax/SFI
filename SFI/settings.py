@@ -157,3 +157,4 @@ if SENTRY_DSN:
         dsn=SENTRY_DSN,integrations=[DjangoIntegration()],
     )
     
+LOGIN_REDIRECT_URL = '/'
