@@ -192,6 +192,7 @@ class Anfitrião(models.Model):
     posto_bairro = models.CharField('Se alguém frequentar o posto, informar o posto e o bairro', max_length=17, blank=True, null=True)
     alguem_beneficio_auxilio = models.CharField('Alguém recebe algum benefício/auxílio do governo?', max_length=17, choices=AUXILIO, default='S')
     beneficio_auxilio = models.CharField('Se alguém receber algum auxilio/beneficio do governo, informar-lo', max_length=17, blank=True, null=True)
+    n_pessoas_familia = models.CharField('Quantas pessoas possuem na família (contando com o anfitrião).', max_length=17, blank=True, null=True)
     tipo_residencia = models.CharField('Tipo de Residência', max_length=17, choices=RESIDENCIA, default='A')
     endereco = models.CharField('Av/Rua do endereço', max_length=100, null=True)
     n_endereco = models.CharField('Nº do endereço', max_length=30, null=True)

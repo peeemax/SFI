@@ -4,7 +4,6 @@ from base.views import login, processo_login, cadastrar_familia_anfitriao, cadas
 
 app_name = 'base'
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
     path('', ListaResumoAnfitriaoView.as_view(), name='anfitrião.list'),
     path('cadastro_família/', cadastrar_familia_anfitriao, name='cadastro_família'),
     path('cadastro_membro/', cadastrar_membro, name='cadastro_membro'),

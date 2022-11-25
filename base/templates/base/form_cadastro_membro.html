@@ -1,12 +1,14 @@
 {% extends 'base/base.html' %}
-{% load static %}
+{% load crispy_forms_tags %}
+
 {% block body %}
-<p>
-<form action="." method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Cadastrar Membro">
-</form>
-</p>
+<div class="offset-1 col-10 list-div">
+	<h1>Cadastre um novo membro para a família:</h1>
+	<form action="." method="post">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" class="btn btn-sucess" value="Cadastrar Membro">
+	</form>
+</div>
 
 {% endblock body %}

@@ -1,12 +1,12 @@
 {% extends 'base/base.html' %}
-{% load static %}
+{% load crispy_forms_tags %}
 {% block body %}
 <p>
 	<input class="btn btn-success" type="button" value="Cadastrar novo Membro" onclick="location.href='{% url 'bases:cadastro_membro' %}'"/>
 </p>
 <form action="." method="post">
 	{% csrf_token %}
-	{{ form.as_p }}
+	{{ form|crispy }}
 	<input type="submit" value="Cadastrar Família">
 </form>
 
