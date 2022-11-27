@@ -4,8 +4,10 @@ from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Anfitrião, Morador
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 from base.forms import FamiliaForm, MoradorForm
+
 
 class ListaResumoAnfitriaoView(ListView):
     model = Anfitrião
@@ -20,7 +22,7 @@ class ListaResumoAnfitriaoView(ListView):
         
 
     
-
+@login_required
 def cadastrar_familia_anfitriao(request):
     if request.method == "GET":
         form = FamiliaForm()
@@ -58,18 +60,3 @@ def cadastrar_membro(request):
         }
     return render('request', 'base/form_cadastro_membro.html', context=context)
 
-    
-def login(request):
-    return render(request, 'registration/login.html')
-
-    
-def processo_login(request):
-    data = {}
-    user = authenticate(username=request.POST['user'], password=request.POST['password'])
-    if user is not None:
-        login(request, user)
-        return redirect('')
-    else: 
-        data['msg'] = 'Usuário ou Senha inválidos!'
-        data['class'] = 'alert-danger'
-        return render(request, 'registration/login.html', data)
