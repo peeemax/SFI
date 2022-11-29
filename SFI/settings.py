@@ -161,5 +161,4 @@ if SENTRY_DSN:
 CRISPY_TEMPLATE_PACK = 'bootstrap4'    
 
 LOGIN_REDIRECT_URL = '/'
-
-LOGIN_REDIRECT_URL = '/accouts/login'
+LOGOUT_REDIRECT_URL = '/contas/login'
