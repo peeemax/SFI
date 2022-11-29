@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 from base.forms import FamiliaForm, MoradorForm
 
-
 class ListaResumoAnfitriaoView(ListView):
     model = Anfitrião
     queryset = Anfitrião.objects.all().order_by('nome_completo')
@@ -41,7 +40,7 @@ def cadastrar_familia_anfitriao(request):
         }
         return render(request, 'base/form_cadastro_anfitrião.html', context=context)
 
-
+@login_required
 def cadastrar_membro(request):
     if request.method == "GET":
         form = MoradorForm()

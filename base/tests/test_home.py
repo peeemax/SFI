@@ -7,7 +7,7 @@ from base.views import ListaResumoAnfitriaoView
 
 @pytest.fixture
 def resp(client):
-    resp = client.get(reverse(ListaResumoAnfitriaoView.as_view()))
+    resp = client.get(reverse('base:anfitrião.list'))
     return resp
 
 def test_status_code(resp):

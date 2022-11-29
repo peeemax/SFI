@@ -37,17 +37,23 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'base.User'
 
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/contas/login'
+
+LOGIN_URL = '/contas/login'
+
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.staticfiles',
+    'base',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'base',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -160,5 +166,3 @@ if SENTRY_DSN:
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'    
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/contas/login'

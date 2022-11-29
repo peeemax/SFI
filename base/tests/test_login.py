@@ -34,7 +34,7 @@ def resp_com_usuario_logado(client_com_usuario_logado, db):
     return client_com_usuario_logado.get(reverse('base:anfitrião.list'))    
     
 def test_botao_menu_indisponivel(resp_com_usuario_logado):
-    assert_not_contains(resp_com_usuario_logado, 'Menu')
+    assert_contains(resp_com_usuario_logado, 'Menu')
     
 def test_link_de_login_indisponivel(resp_com_usuario_logado):
     assert_not_contains(resp_com_usuario_logado, reverse('login'))
