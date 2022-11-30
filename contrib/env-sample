@@ -2,3 +2,12 @@ DEBUG=False
 SECRET_KEY=definasuachavesecreta
 INTERNAL_IPS=127.0.0.1
 SENTRY_DSN=
+
+
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+EMAIL_BACKEND=localhost
+EMAIL_HOST=25
+EMAIL_PORT=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+EMAIL_USE_TLS=True
