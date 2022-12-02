@@ -1,14 +1,43 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<div class="offset-1 col-10 list-div">
-    <h1>Membros Famílias</h1>
-		<ul class="task-list">
-			{% for morador in moradores %}
-			<li class="task-item">
-				<span><a href="/morador/{{morador.id}}">{{morador.nome_completo}}</a></span>
-			</li>
-			{% endfor %}
-		</ul>
+<div class="container-fluid">
+	<div class="row">
+		  <div class="col-md-12">			  
+			  <table class="table table-striped table-sm">
+				  <thead>
+					  <tr>
+						  <th>
+							  Morador
+						  </th>
+						  <th>
+							  Família
+						  </th>
+					  </tr>
+				  </thead>
+				{% for morador in moradores %}
+				  <tbody>
+					<ul class="table">
+						<tr>
+						
+						  <td>
+							<span><a href="/morador/{{ morador.id }}">{{ morador.nome_completo }}</a></span>
+						  </td>
+						  <td>
+							
+						  </td>
+					
+						  <td>
+							
+						  </td>
+					  </tr>
+					  </tr>
+					</ul>
+				{% endfor %}	  	
+				  </tbody>
+			  </table>
+		  </div>
+	  </div>
+	</div>
 </div>
 {% endblock %}
