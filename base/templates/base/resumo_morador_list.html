@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Membros Famílias</h1>
+		<ul class="task-list">
+			{% for morador in moradores %}
+			<li class="task-item">
+				<span><a href="/morador/{{morador.id}}">{{morador.nome_completo}}</a></span>
+			</li>
+			{% endfor %}
+		</ul>
+</div>
+{% endblock %}

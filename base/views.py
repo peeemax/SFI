@@ -18,7 +18,12 @@ class ListaResumoAnfitriaoView(ListView):
         return queryset
     
     # def get_number_morador(self, **kwargs):
-        
+
+
+@login_required  
+def morador_list(request):
+    moradores = Morador.objects.all().order_by('nome_completo')
+    return render(request, 'base/resumo_morador_list.html', {'moradores': moradores})
 
     
 @login_required
@@ -41,13 +46,13 @@ def cadastrar_familia_anfitriao(request):
         return render(request, 'base/form_cadastro_anfitrião.html', context=context)
 
 @login_required
-def cadastrar_membro(request):
+def cadastrar_morador(request):
     if request.method == "GET":
         form = MoradorForm()
         context = {
             'form': form
         }
-        return render(request, 'base/form_cadastro_membro.html', context=context)
+        return render(request, 'base/form_cadastro_morador.html', context=context)
     else:
         form = MoradorForm(request.POST)
         if form.is_valid():
@@ -57,5 +62,5 @@ def cadastrar_membro(request):
         context = {
         'form': form
         }
-    return render('request', 'base/form_cadastro_membro.html', context=context)
+    return render(request, 'base/form_cadastro_morador.html', context=context)
 
