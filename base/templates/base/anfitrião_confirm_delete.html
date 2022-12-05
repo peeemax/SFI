@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<p>Tem certeza que quer deletar a Família "{{ object }}"?</p>
+	<input type="submit" value="Confirmar">
+</form>
+{% endblock %}

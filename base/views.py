@@ -31,7 +31,7 @@ def cadastrar_familia_anfitriao(request):
         context = {
             'form': form
         }
-        return render(request, 'base/form_cadastro_anfitrião.html', context=context)
+        return render(request, 'base/anfitrião_form.html', context=context)
     else:
         form = FamiliaForm(request.POST)
         if form.is_valid():
@@ -41,7 +41,20 @@ def cadastrar_familia_anfitriao(request):
         context = {
         'form': form
         }
-        return render(request, 'base/form_cadastro_anfitrião.html', context=context)
+        return render(request, 'base/anfitrião_form.html', context=context)
+
+
+   
+class FamiliaUpdateView(UpdateView):
+    model = Anfitrião
+    form_class = FamiliaForm
+    success_url = '/'
+
+
+class FamiliaDeleteView(DeleteView):
+    model = Anfitrião
+    success_url = '/'
+
 
 @login_required
 def cadastrar_morador(request):
@@ -50,7 +63,7 @@ def cadastrar_morador(request):
         context = {
             'form': form
         }
-        return render(request, 'base/form_cadastro_morador.html', context=context)
+        return render(request, 'base/morador_form.html', context=context)
     else:
         form = MoradorForm(request.POST)
         if form.is_valid():
@@ -60,5 +73,5 @@ def cadastrar_morador(request):
         context = {
         'form': form
         }
-    return render(request, 'base/form_cadastro_morador.html', context=context)
+    return render(request, 'base/morador_form.html', context=context)
 

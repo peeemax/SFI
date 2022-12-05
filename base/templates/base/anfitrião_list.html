@@ -14,9 +14,6 @@
 						  <th>
 							  Qtd Pessoas Família
 						  </th>
-						  <th>
-							  Qtd Cestas
-						  </th>
 					  </tr>
 				  </thead>
 				  <tbody>
@@ -28,13 +25,13 @@
 						  <td>
 							{{ anfitriao.n_pessoas_familia }}
 						  </td>
-					
 						  <td>
-							
-						  </td>
-					  </tr>
-					  </tr>
+							<a href="{% url 'base:família.atualizar' anfitriao.pk %}">Atualizar</a>
+							<a href="{% url 'base:família.deletar' anfitriao.pk %}">Deletar</a>
+						</td>
+					  	</tr>
 					  {% endfor %}
+
 				  </tbody>
 			  </table>
 		  </div>
