@@ -179,7 +179,7 @@ class Anfitrião(models.Model):
     escolaridade = models.CharField('Escolaridade', max_length=17, choices=ESCOLARIDADE, default='F')
     telefone = models.IntegerField('Celular ou Telefone', null=True)
     profissao = models.CharField('Profissão', max_length=60)
-    n_carteira_trabalho = models.IntegerField('Nº Careteira de Trabalho', blank=True, null=True)
+    n_carteira_trabalho = models.IntegerField('Nº Carteira de Trabalho', blank=True, null=True)
     situacao_atual = models.CharField('Situação atual', max_length=17, choices=SITUACAO_ATUAL, default='T')
     religiao = models.CharField('Religião', max_length=17, choices=RELIGIAO, default='C')
     praticante = models.CharField('Praticante', max_length=17, choices=PRATICANTE, default='S')

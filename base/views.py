@@ -17,8 +17,6 @@ class ListaResumoAnfitriaoView(ListView):
         
         return queryset
     
-    # def get_number_morador(self, **kwargs):
-
 
 @login_required  
 def morador_list(request):

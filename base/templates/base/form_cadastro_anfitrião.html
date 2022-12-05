@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <p>
-	<input class="btn btn-success" type="button" value="Cadastrar novo Membro" onclick="location.href='{% url 'bases:cadastro_membro' %}'"/>
+	<input class="btn btn-success" type="button" value="Cadastrar novo Membro" onclick="location.href='{% url 'bases:cadastro_morador' %}'"/>
 </p>
 <form action="." method="post">
 	{% csrf_token %}
