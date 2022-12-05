@@ -4,10 +4,10 @@
 <p>
 	<input class="btn btn-success" type="button" value="Cadastrar novo Membro" onclick="location.href='{% url 'bases:cadastro_morador' %}'"/>
 </p>
-<form action="." method="post">
+<form method="post" xmlsns="http://www.w3.org/1999/html">
 	{% csrf_token %}
 	{{ form|crispy }}
-	<input type="submit" value="Cadastrar Família">
+	<input type="submit" value="Salvar Família">
 </form>
 
 

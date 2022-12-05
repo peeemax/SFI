@@ -1,9 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Anfitrião, Morador
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 from base.forms import FamiliaForm, MoradorForm
@@ -17,12 +15,6 @@ class ListaResumoAnfitriaoView(ListView):
         
         return queryset
     
-
-@login_required  
-def morador_list(request):
-    moradores = Morador.objects.all().order_by('nome_completo')
-    return render(request, 'base/resumo_morador_list.html', {'moradores': moradores})
-
     
 @login_required
 def cadastrar_familia_anfitriao(request):
@@ -56,8 +48,13 @@ class FamiliaDeleteView(DeleteView):
     success_url = '/'
 
 
+def moradores(request, id_anfitriao):
+    moradores = Morador.objects.filter(anfitriao=id_anfitriao)
+    return render(request, 'base/morador_list.html', {'morador': moradores, 'anfitriao_id': anfitriao_id})
+
+
 @login_required
-def cadastrar_morador(request):
+def cadastrar_morador(request, pk_anfitriao):
     if request.method == "GET":
         form = MoradorForm()
         context = {
