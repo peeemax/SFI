@@ -4,7 +4,7 @@
 {% block content %}
 <div class="offset-1 col-10 list-div">
 	<h1>Cadastre um novo morador para a família:</h1>
-	<form action="." method="post">
+	<form method="post">
 		{% csrf_token %}
 		{{ form|crispy }}
 		<input type="submit" class="btn btn-sucess" value="Cadastrar Morador">

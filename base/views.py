@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Anfitrião, Morador
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from base.forms import FamiliaForm, MoradorForm
 
@@ -47,14 +48,8 @@ class FamiliaDeleteView(DeleteView):
     model = Anfitrião
     success_url = '/'
 
-
-def moradores(request, id_anfitriao):
-    moradores = Morador.objects.filter(anfitriao=id_anfitriao)
-    return render(request, 'base/morador_list.html', {'morador': moradores, 'anfitriao_id': anfitriao_id})
-
-
 @login_required
-def cadastrar_morador(request, pk_anfitriao):
+def cadastrar_morador(request):
     if request.method == "GET":
         form = MoradorForm()
         context = {
@@ -72,3 +67,22 @@ def cadastrar_morador(request, pk_anfitriao):
         }
     return render(request, 'base/morador_form.html', context=context)
 
+def moradores(request, anfitriao_id):
+    moradores = Morador.objects.filter(anfitriao=anfitriao_id)
+    return render(request, 'base/morador_list.html', {'moradores': moradores, 'anfitriao_id': anfitriao_id})
+
+def morador_atualizar(request, anfitriao_id, id):
+    morador = get_object_or_404(Morador, id=id)
+    form = MoradorForm(instance=morador)
+    if request.method == "POST":
+        form = MoradorForm(request.POST, instance=morador)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('resumo_moradores', args=[anfitriao_id]))
+        
+    return render(request, 'base/morador_form.html', {'form': form})
+
+def morador_deletar(request, anfitriao_id, id):
+    morador = get_object_or_404(Morador, id=id)
+    morador.delete()
+    return redirect(reverse('resumo_moradores', args=[anfitriao_id]))

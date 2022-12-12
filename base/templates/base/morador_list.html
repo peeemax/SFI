@@ -9,29 +9,28 @@
 				  <thead>
 					  <tr>
 						  <th>
-							  Família
+							  Morador Id
 						  </th>
 						  <th>
-							  Qtd Pessoas Família
+							  Nome Morador
 						  </th>
 					  </tr>
 				  </thead>
 				  <tbody>
-						{% for anfitriao in object_list %}
+						{% for morador in moradores %}
 						<tr>
 						  <td>
-							{{ anfitriao.nome_completo }}
+							{{ morador.anfitriao_id }}
 						  </td>
 						  <td>
-							{{ anfitriao.n_pessoas_familia }}
+							{{ morador.nome_completo }}
 						  </td>
 						  <td>
-							<a href="{% url 'base:família.atualizar' anfitriao.id %}">Atualizar</a>
-							<a href="{% url 'base:família.deletar' anfitriao.id %}">Deletar</a>
-						</td>
+							<a href="{% url 'base:morador.atualizar' anfitriao_id morador.pk %}">Atualizar</a>
+							<a href="{% url 'base:morador.deletar' anfitriao_id morador.pk %}">Deletar</a>
+						  </td>
 					  	</tr>
-					  {% endfor %}
-
+					  	{% endfor %}
 				  </tbody>
 			  </table>
 		  </div>
