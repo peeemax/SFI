@@ -78,11 +78,11 @@ def morador_atualizar(request, anfitriao_id, id):
         form = MoradorForm(request.POST, instance=morador)
         if form.is_valid():
             form.save()
-            return redirect(reverse('resumo_moradores', args=[anfitriao_id]))
+            return redirect(reverse('anfitriao.moradores', args=[anfitriao_id]))
         
     return render(request, 'base/morador_form.html', {'form': form})
 
 def morador_deletar(request, anfitriao_id, id):
     morador = get_object_or_404(Morador, id=id)
     morador.delete()
-    return redirect(reverse('resumo_moradores', args=[anfitriao_id]))
+    return redirect(reverse('morador', args=[anfitriao_id]))

@@ -28,6 +28,7 @@
 						  <td>
 							<a href="{% url 'base:família.atualizar' anfitriao.id %}">Atualizar</a>
 							<a href="{% url 'base:família.deletar' anfitriao.id %}">Deletar</a>
+							<a href="{% url 'base:anfitriao.moradores' anfitriao.id %}">Ver Membros</a>
 						</td>
 					  	</tr>
 					  {% endfor %}
