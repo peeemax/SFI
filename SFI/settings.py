@@ -176,5 +176,7 @@ if SENTRY_DSN:
         dsn=SENTRY_DSN,integrations=[DjangoIntegration()],
     )
 
+CSRF_TRUSTED_ORIGINS = ['https://sfi.up.railway.app/']
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'    
 
