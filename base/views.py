@@ -37,7 +37,6 @@ def cadastrar_familia_anfitriao(request):
         return render(request, 'base/anfitrião_form.html', context=context)
 
 
-   
 class FamiliaUpdateView(UpdateView):
     model = Anfitrião
     form_class = FamiliaForm
@@ -47,6 +46,11 @@ class FamiliaUpdateView(UpdateView):
 class FamiliaDeleteView(DeleteView):
     model = Anfitrião
     success_url = '/'
+
+
+def moradores(request, anfitriao_id):
+    moradores = Morador.objects.filter(anfitriao=anfitriao_id)
+    return render(request, 'base/morador_list.html', {'moradores': moradores, 'anfitriao_id': anfitriao_id})
 
 @login_required
 def cadastrar_morador(request):
@@ -59,17 +63,13 @@ def cadastrar_morador(request):
     else:
         form = MoradorForm(request.POST)
         if form.is_valid():
-            familia = form.save()
+            morador = form.save()
             form = MoradorForm()
             
         context = {
         'form': form
         }
     return render(request, 'base/morador_form.html', context=context)
-
-def moradores(request, anfitriao_id):
-    moradores = Morador.objects.filter(anfitriao=anfitriao_id)
-    return render(request, 'base/morador_list.html', {'moradores': moradores, 'anfitriao_id': anfitriao_id})
 
 def morador_atualizar(request, anfitriao_id, id):
     morador = get_object_or_404(Morador, id=id)
@@ -78,11 +78,11 @@ def morador_atualizar(request, anfitriao_id, id):
         form = MoradorForm(request.POST, instance=morador)
         if form.is_valid():
             form.save()
-            return redirect(reverse('anfitriao.moradores', args=[anfitriao_id]))
+            return redirect(reverse('base:anfitriao.moradores', args=[anfitriao_id]))
         
     return render(request, 'base/morador_form.html', {'form': form})
 
 def morador_deletar(request, anfitriao_id, id):
     morador = get_object_or_404(Morador, id=id)
     morador.delete()
-    return redirect(reverse('morador', args=[anfitriao_id]))
+    return redirect(reverse('base:anfitriao.moradores', args=[anfitriao_id]))

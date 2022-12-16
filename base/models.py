@@ -100,6 +100,7 @@ class Anfitrião(models.Model):
     SEXOS = (
         ('M', 'Masculino'),
         ('F', 'Feminino'),
+        ('Outro', 'Outro'),
     )
     
     ESTADO_CIVIL = (
@@ -171,17 +172,17 @@ class Anfitrião(models.Model):
     data_nascimento = models.DateField('Data de nascimento')
     rg = models.IntegerField('Número do RG', max_length=7, blank=True, null=True)
     cpf = models.IntegerField('Número do CPF', max_length=11, blank=True, null=True)
-    data_casamento = models.DateField('Data de casamento', null=True)
-    sexo = models.CharField('Sexo', max_length=1, choices=SEXOS, default='M')
+    data_casamento = models.DateField('Data de casamento', null=True, blank=True)
+    sexo = models.CharField('Sexo', max_length=10, choices=SEXOS, default='M')
     nome_pai = models.CharField('Nome do Pai', max_length=60)
     nome_mãe = models.CharField('Nome da Mãe', max_length=60)
     naturalidade = models.CharField('Cidade de origem', max_length=60)
     estado_civil = models.CharField('Estado civil', max_length=17, choices=ESTADO_CIVIL, default='C')
     escolaridade = models.CharField('Escolaridade', max_length=17, choices=ESCOLARIDADE, default='F')
     telefone = models.IntegerField('Celular ou Telefone', null=True)
-    profissao = models.CharField('Profissão', max_length=60)
     n_carteira_trabalho = models.IntegerField('Nº Carteira de Trabalho', blank=True, null=True)
     situacao_atual = models.CharField('Situação atual', max_length=17, choices=SITUACAO_ATUAL, default='T')
+    profissao = models.CharField('Profissão', max_length=60, null=True, blank=True)
     religiao = models.CharField('Religião', max_length=17, choices=RELIGIAO, default='C')
     praticante = models.CharField('Praticante', max_length=17, choices=PRATICANTE, default='S')
     filhos = models.CharField('Possui filhos', max_length=17, choices=FILHOS, default='S')
@@ -195,12 +196,13 @@ class Anfitrião(models.Model):
     posto_bairro = models.CharField('Se alguém frequentar o posto, informar o posto e o bairro', max_length=17, blank=True, null=True)
     alguem_beneficio_auxilio = models.CharField('Alguém recebe algum benefício/auxílio do governo?', max_length=17, choices=AUXILIO, default='S')
     beneficio_auxilio = models.CharField('Se alguém receber algum auxilio/beneficio do governo, informar-lo', max_length=17, blank=True, null=True)
-    n_pessoas_familia = models.CharField('Quantas pessoas possuem na família (contando com o anfitrião).', max_length=17, blank=True, null=True)
+    n_pessoas_familia = models.CharField('Quantas pessoas possuem na família (contando com o anfitrião).', max_length=17)
     tipo_residencia = models.CharField('Tipo de Residência', max_length=17, choices=RESIDENCIA, default='A')
     endereco = models.CharField('Av/Rua do endereço', max_length=100, null=True)
     n_endereco = models.CharField('Nº do endereço', max_length=30, null=True)
-    comp_endereco = models.CharField('Se tiver complemento do endereço', max_length=50, null=True)
+    comp_endereco = models.CharField('Se tiver complemento do endereço', max_length=50, blank=True, null=True)
     bairro = models.CharField('Bairro', max_length=70, null=True)
+    cep = models.CharField('CEP', max_length=70, null=True)
     cidade = models.CharField('Cidade', max_length=70, null=True)
     estado = models.CharField('Estado', max_length=70, null=True)
     
@@ -231,12 +233,16 @@ class Morador(models.Model):
     SEXOS = (
         ('M', 'Masculino'),
         ('F', 'Feminino'),
+        ('Outro', 'Outro'),
+        
     )
     
     PARENTESCO = (
         ('Esposo/a', 'Esposo/a'),
+        ('Pai', 'Pai'),
+        ('Mãe', 'Mãe'),
         ('Filho/a', 'Filho/a'),
-        ('Irmão/ã', 'Filho/ã'),
+        ('Irmão/ã', 'Irmão/ã'),
         ('Avô/ó', 'Avô/ó'),
         ('Sobrinho/a', 'Sobrinho/a'),
         ('Neto/a', 'Neto/a'),
@@ -250,10 +256,10 @@ class Morador(models.Model):
     documento = models.CharField('Tipo de documento', max_length=10, choices=DOCS)
     n_documento = models.IntegerField('Número do documento', max_length=11)
     data_nascimento = models.DateField('Data de nascimento')
-    trabalhando = models.CharField('Sim ou Não', max_length=20, choices=TRABALHA)
-    estudando = models.CharField('Tipo de documento', max_length=10, choices=ESTUDA)
     sexo = models.CharField('Sexo', max_length=10, choices=SEXOS)
-    grau_parentesco = models.CharField('Tipo de documento', max_length=10, choices=PARENTESCO)
+    trabalhando = models.CharField('Trabalha?', max_length=20, choices=TRABALHA)
+    estudando = models.CharField('Estuda?', max_length=10, choices=ESTUDA)
+    grau_parentesco = models.CharField('Qual grau de parentesco?', max_length=10, choices=PARENTESCO)
     anfitriao= models.ForeignKey(Anfitrião, related_name='moradores', on_delete=models.CASCADE)
 
     
