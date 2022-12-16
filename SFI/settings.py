@@ -30,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "6b3s31zh!oo5h%r2$k0%v9$w%6nbmo@otydyiou9a$*wee$^+z"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = ['*']
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'base.User'
 
