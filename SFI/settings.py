@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from xml.etree.ElementInclude import default_loader
+import django
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -89,12 +90,12 @@ WSGI_APPLICATION = 'SFI.wsgi.application'
 
 # Configuração de envio de email
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend
+EMAIL_HOST = '25'
+EMAIL_PORT = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
 
 
 # Configuração Django Debug Toolbar
@@ -168,7 +169,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-SENTRY_DSN = config('SENTRY_DSN', default=None)
+SENTRY_DSN = 'https://7771b0f4c3d2432d858d08d9d822b982@o4504096745783296.ingest.sentry.io/4504096749191168'
 
 if SENTRY_DSN:
     sentry_sdk.init(
