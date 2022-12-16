@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'SFI.wsgi.application'
 
 # Configuração de envio de email
 
-EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = '25'
 EMAIL_PORT = ''
 EMAIL_HOST_USER = ''
