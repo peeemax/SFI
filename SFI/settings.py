@@ -33,7 +33,7 @@ SECRET_KEY = "6b3s31zh!oo5h%r2$k0%v9$w%6nbmo@otydyiou9a$*wee$^+z"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'sfi.up.railway.app']
 
 AUTH_USER_MODEL = 'base.User'
 
