@@ -115,7 +115,14 @@ if DEBUG:
 DATABASE_URL = config('DATABASE_URL')
 
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'J6kUQY9BWFWcmav6I5WD',
+        'HOST': 'containers-us-west-147.railway.app',
+        'PORT': '6465',
+    }
 }
 
 """
